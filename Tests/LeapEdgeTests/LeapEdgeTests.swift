@@ -7,7 +7,7 @@ final class LeapEdgeTests: XCTestCase {
 //        options[\.debug] = true
         let leap = LeapEdge(auth: .init(token: nil, projectId: "test"), opts: options)
         leap.connect()
-        let expectation = expectation(description: "hello")
+        let expectation = expectation(description: "Will connect and receive a message")
         
         leap.emitter.when { (message: LeapEdge.ConnectionState) in
             print("Connection state:", message)

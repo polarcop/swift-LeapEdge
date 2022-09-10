@@ -20,11 +20,11 @@ import LeapEdge
 let leap = LeapEdge(auth: .init(token: "leap_token_xxx", projectId: "project_xxx"))
 leap.connect()
 
-leap.emitter.when { (message: LeapEdge.ConnectionState) in
+leap.on { (message: LeapEdge.ConnectionState) in
   // Do something with the current connection state.
 }
 
-leap.emitter.when { (message: LeapEdge.ServiceEvent) in
+leap.on { (message: LeapEdge.ServiceEvent) in
   // Wait for an event and respond accordingly
 }
 

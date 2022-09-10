@@ -76,7 +76,6 @@ extension LeapEdge {
             self.updateConnectionState(.connected)
             break
         case .disconnected(let reason, let code):
-            // TODO: Parse and map the error to the correct leap error then handle the reconnection accordingly
             self.updateConnectionState(.errored)
             if self.options.debug {
                 print("[Leap Edge] Client disconnected unexpectedly:", reason, "with code:", code)

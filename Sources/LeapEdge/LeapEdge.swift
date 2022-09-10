@@ -7,7 +7,6 @@
 
 import Foundation
 import Starscream
-import FlexEmit
 
 // This is ok to unwrap since we know it's valid
 fileprivate let DEFAULT_ENDPOINT = URL(string: "wss://leap.hop.io/ws").unsafelyUnwrapped
@@ -20,7 +19,7 @@ final public class LeapEdge: WebSocketDelegate {
     private var lastServerHeartbeatAck: Int?
     private var connectionState: ConnectionState
     private var options: InitOptions
-    public let emitter: Emitter
+    private let emitter: Emitter
     private let throttler: Throttler
     
     public init(
@@ -67,6 +66,12 @@ final public class LeapEdge: WebSocketDelegate {
         socket.write(stringData: json, completion: nil)
     }
     
+    @discardableResult
+    public func on<Message>(_ listener: @escaping (Message)->Void) -> Listener<Message> {
+        self.emitter.when { (message: Message) in
+            return listener(message)
+        }
+    }
 }
 
 extension LeapEdge {
@@ -240,5 +245,5 @@ extension LeapEdge {
         case authenticating = "authenticating"
         case connected = "connected"
         case errored = "errored"
-    }    
+    }
 }

@@ -14,15 +14,13 @@ let package = Package(
             targets: ["LeapEdge"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.0"),
-        .package(url: "https://github.com/rishi8094/flexemit.git", from: "0.0.1")
+        .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.0")
     ],
     targets: [
         .target(
             name: "LeapEdge",
             dependencies: [
                 .product(name: "Starscream", package: "Starscream"),
-                .product(name: "FlexEmit", package: "FlexEmit")
             ]),
         .testTarget(
             name: "LeapEdgeTests",

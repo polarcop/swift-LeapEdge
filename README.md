@@ -4,6 +4,13 @@ This package was ported from [leap-edge-js](https://github.com/hopinc/leap-edge-
 
 An unofficial utility library for connecting and receiving events from [Leap Edge](https://docs.hop.io/docs/channels/internals/leap). Used for Channels.
 
+## Installation
+**With** [Package Manager](https://swift.org/package-manager/)
+
+```swift
+.package(name: "LeapEdge", url: "https://github.com/polarcop/swift-LeapEdge.git", .upToNextMajor(from: "1.0.0"))
+```
+
 ## Usage
 ### Basic
 

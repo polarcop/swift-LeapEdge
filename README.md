@@ -8,7 +8,7 @@ An unofficial utility library for connecting and receiving events from [Leap Edg
 **With** [Package Manager](https://swift.org/package-manager/)
 
 ```swift
-.package(name: "LeapEdge", url: "https://github.com/polarcop/swift-LeapEdge.git", .upToNextMajor(from: "1.0.0"))
+.package(url: "https://github.com/polarcop/swift-LeapEdge.git", from: .init(1, 0, 0))
 ```
 
 ## Usage

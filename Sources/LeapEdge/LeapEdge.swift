@@ -57,7 +57,10 @@ final public class LeapEdge: WebSocketDelegate {
     
     public func sendServicePayload(payload: EncapsulatingServicePayload) {
         guard let socket = self.socket, self.connectionState == .connected else {
-            fatalError("Attempted to send payload when socket connection was not established or authorized")
+            if (self.options.debug) {
+                print("[Leap Edge] Attempted to send payload when socket connection was not established or authorized")
+            }
+            return
         }
         guard let json = try? JSONEncoder().encode(payload) else { return }
         if (self.options.debug) {

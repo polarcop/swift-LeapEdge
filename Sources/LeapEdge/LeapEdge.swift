@@ -24,7 +24,7 @@ final public class LeapEdge: WebSocketDelegate {
     
     public init(
         auth: AuthenticationParameters,
-        opts: Partial<InitOptions>? = nil
+        opts: InitOptions? = nil
     ) {
         self.auth = auth
         self.socket = nil
@@ -32,10 +32,7 @@ final public class LeapEdge: WebSocketDelegate {
         self.heartbeatInterval = nil
         self.lastServerHeartbeatAck = nil
         self.connectionState = .idle
-        self.options = InitOptions(
-            socketUrl: opts?[\.socketUrl] ?? DEFAULT_ENDPOINT,
-            debug: opts?[\.debug] ?? false
-        )
+        self.options = opts ?? InitOptions()
         self.emitter = Emitter()
         self.throttler = Throttler(minimumDelay: 1.0)
     }
@@ -239,7 +236,15 @@ extension LeapEdge {
     
     public struct InitOptions {
         var socketUrl: URL
-        let debug: Bool
+        var debug: Bool
+        
+        public init(
+            socketUrl: URL? = nil,
+            debug: Bool? = nil
+        ) {
+            self.socketUrl = socketUrl ?? DEFAULT_ENDPOINT
+            self.debug = debug ?? false
+        }
     }
     
     public enum ConnectionState: String {

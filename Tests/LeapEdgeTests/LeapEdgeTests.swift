@@ -3,9 +3,7 @@ import XCTest
 
 final class LeapEdgeTests: XCTestCase {
     func testConnection() throws {
-        var options: LeapEdge.Partial<LeapEdge.InitOptions> = .init()
-        options[\.debug] = false
-        let leap = LeapEdge(auth: .init(token: nil, projectId: "test"), opts: options)
+        let leap = LeapEdge(auth: .init(token: nil, projectId: "test"), opts: .init(debug: false))
         leap.connect()
         let expectation = expectation(description: "Will connect and receive a message")
         
